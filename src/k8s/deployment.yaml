@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversao-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: conversao-app
+  template:
+    metadata:
+      labels:
+        app: conversao-app
+    spec:
+      containers:
+      - name: web
+        image: johnnydapp/conversao-temperatura:latest  
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
